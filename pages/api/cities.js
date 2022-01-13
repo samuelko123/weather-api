@@ -4,6 +4,11 @@ export default async function handler(req, res) {
     const { namePrefix } = req.query
 
     try {
+        if (!namePrefix) {
+            res.status(400).json({ error: "Missing 'namePrefix' parameter" })
+            return
+        }
+
         const config = {
             method: 'GET',
             url: 'https://wft-geo-db.p.rapidapi.com/v1/geo/cities',
