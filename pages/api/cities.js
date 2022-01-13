@@ -15,7 +15,7 @@ export default async function handler(req, res) {
         }
 
         const { data } = await axios.request(config)
-        const result = data.map(item => {
+        const result = data.data.map(item => {
             return {
                 name: item.name,
                 countryCode: item.countryCode,
@@ -26,6 +26,7 @@ export default async function handler(req, res) {
 
         res.status(200).json(result)
     } catch (err) {
+        console.log(err)
         res.status(500).json({ error: err })
     }
 }
