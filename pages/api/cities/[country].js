@@ -25,7 +25,6 @@ export default async function handler(req, res) {
         const result = data.data.map(item => {
             return {
                 name: item.name,
-                countryCode: item.countryCode,
                 lat: item.latitude,
                 lon: item.longitude,
             }
