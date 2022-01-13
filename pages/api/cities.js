@@ -1,13 +1,13 @@
 import axios from 'axios'
 
 export default async function handler(req, res) {
-    const { name } = req.query
+    const { namePrefix } = req.query
 
     try {
         const config = {
             method: 'GET',
             url: 'https://wft-geo-db.p.rapidapi.com/v1/geo/cities',
-            params: { namePrefix: name, sort: '-population', offset: 0, limit: 10 },
+            params: { namePrefix: namePrefix, sort: '-population', offset: 0, limit: 10 },
             headers: {
                 'x-rapidapi-host': 'wft-geo-db.p.rapidapi.com',
                 'x-rapidapi-key': process.env.API_KEY_CITY
