@@ -7,10 +7,16 @@ export default async function handler(req, res) {
         if (!lat) {
             res.status(400).json({ error: "Missing 'lat' parameter" })
             return
+        } else if (isNaN(parseFloat(lat))){
+            res.status(400).json({ error: `Invalid 'lat' parameter - ${lat}` })
+            return
         }
 
         if (!lon) {
             res.status(400).json({ error: "Missing 'lon' parameter" })
+            return
+        } else if (isNaN(parseFloat(lon))){
+            res.status(400).json({ error: `Invalid 'lat' parameter - ${lon}` })
             return
         }
 

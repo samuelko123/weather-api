@@ -6,7 +6,9 @@ export default async function handler(req, res) {
     try {
         const url = `http://v0.postcodeapi.com.au/suburbs.json?q=${q}`
         const { data } = await axios.get(url)
-        const result = data.map(item => {
+        const result = data
+        .filter(item => !!item.latitude && !!item.longitude)
+        .map(item => {
             return {
                 name: item.name,
                 lat: item.latitude,
