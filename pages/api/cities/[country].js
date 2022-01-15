@@ -9,8 +9,6 @@ export default async function handler(req, res) {
             return
         }
 
-        console.log(country)
-
         const config = {
             method: 'GET',
             url: 'https://wft-geo-db.p.rapidapi.com/v1/geo/cities',
@@ -32,7 +30,6 @@ export default async function handler(req, res) {
 
         res.status(200).json(result)
     } catch (err) {
-        console.log(err)
         res.status(500).json({ error: err })
     }
 }
