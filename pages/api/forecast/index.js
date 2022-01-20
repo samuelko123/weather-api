@@ -1,5 +1,23 @@
 import axios from 'axios'
 
+const iconMapping = {
+    Clear: 'weather-sunny',
+    Clouds: 'weather-cloudy',
+    Rain: 'weather-rainy',
+    Drizzle: 'weather-partly-rainy',
+    Thunderstorm: 'weather-lightning',
+    Snow: 'weather-snowy',
+    Fog: 'weather-fog',
+    Squall: 'weather-windy',
+    Tornado: 'weather-hurricane',
+    Mist: 'weather-hazy',
+    Smoke: 'weather-hazy',
+    Haze: 'weather-hazy',
+    Dust: 'weather-hazy',
+    Sand: 'weather-hazy',
+    Ash: 'weather-hazy',
+}
+
 export default async function handler(req, res) {
     const { lat, lon } = req.query
 
@@ -28,13 +46,13 @@ export default async function handler(req, res) {
             current: {
                 dt: data.current.dt,
                 temp: data.current.temp,
-                weather: data.current.weather[0].main,
+                icon: iconMapping[data.current.weather[0].main],
             },
             hourly: data.hourly.map(item => {
                 return {
                     dt: item.dt,
                     temp: item.temp,
-                    weather: item.weather[0].main,
+                    icon: iconMapping[item.weather[0].main],
                 }
             }),
             daily: data.daily.map(item => {
@@ -42,7 +60,7 @@ export default async function handler(req, res) {
                     dt: item.dt,
                     min: item.temp.min,
                     max: item.temp.max,
-                    weather: item.weather[0].main,
+                    icon: iconMapping[item.weather[0].main],
                 }
             }),
         }
