@@ -28,20 +28,23 @@ export default async function handler(req, res) {
             current: {
                 dt: data.current.dt,
                 temp: data.current.temp,
+                weather: data.current.weather[0].main,
             },
+            hourly: data.hourly.map(item => {
+                return {
+                    dt: item.dt,
+                    temp: item.temp,
+                    weather: item.weather[0].main,
+                }
+            }),
             daily: data.daily.map(item => {
                 return {
                     dt: item.dt,
                     min: item.temp.min,
                     max: item.temp.max,
+                    weather: item.weather[0].main,
                 }
             }),
-            hourly: data.hourly.map(item => {
-                return {
-                    dt: item.dt,
-                    temp: item.temp,
-                }
-            })
         }
 
         res.status(200).json(result)
