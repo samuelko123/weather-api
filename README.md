@@ -5,4 +5,4 @@
 
 A simple backend for my React Native project.
 
-Demo: https://weather-api-samuelko.vercel.app/api/seven-day-forecast/WA
+Demo: https://weather-api-samuelko.vercel.app/api/forecast?lat=-37.82&lon=144.96
